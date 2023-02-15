@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)
 employees = [
     {
         'id': 1,
@@ -10,6 +11,7 @@ employees = [
         'emailId': 'john.doe@example.com'
     },
     {
+    
         'id': 2,
         'firstName': 'Jane',
         'lastName': 'Smith',
@@ -26,7 +28,7 @@ employees = [
 @app.route('/api/v1/employees', methods=['GET', 'POST'])
 def manage_employees():
     if request.method == 'GET':
-        return jsonify({'employees': employees})
+        return jsonify(employees)
 
     if request.method == 'POST':
         employee = {
