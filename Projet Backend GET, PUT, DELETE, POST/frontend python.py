@@ -5,25 +5,25 @@ app = Flask(__name__)
 employees = [
     {
         'id': 1,
-        'name': 'John Doe',
-        'position': 'Manager',
-        'salary': 50000
+        'firstName': 'John',
+        'lastName': 'Doe',
+        'emailId': 'john.doe@example.com'
     },
     {
         'id': 2,
-        'name': 'Jane Smith',
-        'position': 'Engineer',
-        'salary': 60000
+        'firstName': 'Jane',
+        'lastName': 'Smith',
+        'emailId': 'jane.smith@example.com'
     },
     {
         'id': 3,
-        'name': 'Bob Johnson',
-        'position': 'Technician',
-        'salary': 40000
+        'firstName': 'Bob',
+        'lastName': 'Johnson',
+        'emailId': 'bob.johnson@example.com'
     }
 ]
 
-@app.route('/employees', methods=['GET', 'POST'])
+@app.route('/api/v1/employees', methods=['GET', 'POST'])
 def manage_employees():
     if request.method == 'GET':
         return jsonify({'employees': employees})
@@ -31,14 +31,14 @@ def manage_employees():
     if request.method == 'POST':
         employee = {
             'id': employees[-1]['id'] + 1,
-            'name': request.json['name'],
-            'position': request.json['position'],
-            'salary': request.json['salary']
+            'firstName': request.json['firstName'],
+            'lastName': request.json['lastName'],
+            'emailId': request.json['emailId']
         }
         employees.append(employee)
         return jsonify({'employee': employee}), 201
 
-@app.route('/employees/<int:employee_id>', methods=['GET', 'PUT', 'DELETE'])
+@app.route('/api/v1/employees/<int:employee_id>', methods=['GET', 'PUT', 'DELETE'])
 def manage_employee(employee_id):
     employee = [employee for employee in employees if employee['id'] == employee_id]
     if len(employee) == 0:
@@ -48,9 +48,9 @@ def manage_employee(employee_id):
         return jsonify({'employee': employee[0]})
 
     if request.method == 'PUT':
-        employee[0]['name'] = request.json.get('name', employee[0]['name'])
-        employee[0]['position'] = request.json.get('position', employee[0]['position'])
-        employee[0]['salary'] = request.json.get('salary', employee[0]['salary'])
+        employee[0]['firstName'] = request.json.get('firstName', employee[0]['firstName'])
+        employee[0]['lastName'] = request.json.get('lastName', employee[0]['lastName'])
+        employee[0]['emailId'] = request.json.get('emailId', employee[0]['emailId'])
         return jsonify({'employee': employee[0]})
 
     if request.method == 'DELETE':
@@ -58,4 +58,4 @@ def manage_employee(employee_id):
         return jsonify({'result': 'Employee deleted'})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=8080, debug=True)
