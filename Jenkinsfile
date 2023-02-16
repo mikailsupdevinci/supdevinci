@@ -1,22 +1,29 @@
-# Jenkinsfil
 pipeline {
     agent any
 
     stages {
-       stage('clone github repo') {
-                steps {
-                    sh 'git clone https://github.com/raoufcherfa/employe.git'
-                }
-            }
         stage('Build') {
             steps {
                 sh 'pip install -r requirements.txt'
             }
         }
-        stage('Test') {
+
+        stage('Unit tests') {
             steps {
-                sh 'pytest tests/'
+                sh 'python -m unittest discover tests'
             }
+        }
+
+        stage('Publish test results') {
+            steps {
+                junit 'tests/*.xml'
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts 'tests/*.xml'
         }
     }
 }
