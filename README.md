@@ -47,9 +47,6 @@ Vous devriez obtenir ceci :
 
 ## Fabriqué avec
 
-ChatGPT, VsCode, JenKins, Docker, GitHub.
-
-_exemples :_
 * [VsCode](https://code.visualstudio.com/) - Editeur de code
 * [Docker](https://www.docker.com/) - Tester et déployer rapidement des applications à l'aide de conteneurs
 * [Jenkins](https://www.jenkins.io/) - Outil open source de serveur d'automatisation
