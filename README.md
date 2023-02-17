@@ -1,6 +1,6 @@
 # Master, exécution du JenKinsFile
 
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  [![forthebadge](http://forthebadge.com/images/badges/powered-by-electricity.svg)](http://forthebadge.com)
+[![forthebadge](http://forthebadge.com/images/badges/powered-by-electricity.svg)](https://github.com/mikailsupdevinci)
 
 Une petite description du projet
 
